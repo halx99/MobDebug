@@ -1,5 +1,43 @@
 # MobDebug Changelog
 
+## v0.70 (Sep 02 2017)
+  - Upgraded Serpent (0.30) to allow skipping `__tostring` (closes #27, closes #29).
+  - Improved handling of `__tostring` failures in stack processing (#27, #29).
+  - Fixed returning intercepted traceback if the value is not a string (fixes #33).
+  - Updated traceback reported from `debug.traceback` to avoid skipping one frame (#31).
+  - Limited setting `debug.traceback` to Lua5.1/LuaJIT (closes #31).
+  - Upgraded Serpent (0.288) to add `maxlength` and other improvements.
+  - Updated debugger to extend STACK command with additional options.
+  - Updated debugger to add support for vararg expressions in EXEC command.
+  - Updated debugger to extend EXEC command with additional options.
+  - Fixed updir removal in normalization to only happen at the beginning of the line.
+  - Updated stack generation for nginx/openresty as it no longer generates additional stack frame.
+
+## v0.64 (Aug 06 2016)
+  - Add callback mobdebug.onscratch (thanks to @dodo).
+  - Added path normalization to file names that don't start with `@`.
+  - Added populating vararg (`...`) values in the main chunk during debugging.
+  - Added path normalization to handle paths with up-dir references.
+  - Added `verbose` option to the `handle` method of the debugger.
+  - Added `output` method to pass stream information back to the controller.
+  - Improved error checking after OUTPUT command.
+  - Updated to reference one source for all hook masks.
+  - Updated `output` method not to fail when debugging is not started.
+  - Updated output stream processing to allow for empty strings.
+  - Updated `vararg` stack handling to work around incorrect LuaJIT 2.0.0 values.
+
+## v0.63 (Jan 25 2016)
+  - Added localization for `coroutine.wrap` call to allow modification (closes #17).
+  - Added `onexit` callback and removed `os.exit` calls from the controller (#19).
+  - Removed explicit assignment to `loaded` as this can be done only as needed (#23).
+  - Switched to using `string.*` methods to avoid string metamethods in the debug hook.
+  - Updated check for session completion to avoid early exit from debugging server (closes #24).
+  - Updated tests to add `listw` and `listb` commands.
+  - Upgraded Serpent (0.285) to add `keyignore` option.
+  - Upgraded Serpent to add numerical format fix and `__tostring` protection.
+  - Updated `DONE` response to allow for async processing (#19).
+  - Updated information on Lua 5.3 in README.
+
 ## v0.62 (May 2 2015)
   - Added variable arguments (vararg) to the stack trace.
   - Updated examples to add `stack`, `basedir`, and `output` commands (closes #15).
